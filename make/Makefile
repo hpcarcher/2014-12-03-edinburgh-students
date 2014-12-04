@@ -1,15 +1,14 @@
-# Count words.
-
 include config.mk
 
 TXT_FILES=$(wildcard books/*.txt)
-$(warning The value of TXT_FILES is $(TXT_FILES))
 DAT_FILES=$(patsubst books/%.txt, %.dat, $(TXT_FILES))
 JPG_FILES=$(patsubst books/%.txt, %.jpg, $(TXT_FILES))
 
+# Count words.
 %.dat : books/%.txt $(COUNT_SRC)
 	$(COUNT_EXE) $< $@
 
+# Plot word counts.
 %.jpg : %.dat $(PLOT_SRC)
 	$(PLOT_EXE) $< $@
 
